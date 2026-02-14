@@ -25,6 +25,7 @@
   "keyToString": {
     "Maven.financial-transaction-tracking-system [clean].executor": "Run",
     "Maven.financial-transaction-tracking-system [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor": "Run",
+    "Maven.financial-transaction-tracking-system [validate].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",

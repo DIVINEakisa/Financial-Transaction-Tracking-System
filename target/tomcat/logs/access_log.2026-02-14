@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:57:47 +0200] "GET /ftts HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:57:48 +0200] "GET /ftts HTTP/1.1" 302 - http-bio-8080-exec-2 0
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:57:50 +0200] "GET /ftts/ HTTP/1.1" 200 5945 http-bio-8080-exec-3 2107
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:57:50 +0200] "GET /ftts/ HTTP/1.1" 200 5945 http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:59:18 +0200] "GET /ftts/login.jsp HTTP/1.1" 200 2886 http-bio-8080-exec-7 1716
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:59:40 +0200] "POST /ftts/login HTTP/1.1" 200 3083 http-bio-8080-exec-9 3035
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:11:59:46 +0200] "GET /ftts/register.jsp HTTP/1.1" 200 5584 http-bio-8080-exec-10 358
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:12:00:09 +0200] "POST /ftts/register HTTP/1.1" 200 3092 http-bio-8080-exec-10 541
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:12:00:30 +0200] "POST /ftts/login HTTP/1.1" 302 - http-bio-8080-exec-1 565
+0:0:0:0:0:0:0:1 - - [14/Feb/2026:12:00:32 +0200] "GET /ftts/dashboard.jsp HTTP/1.1" 500 1362 http-bio-8080-exec-1 2325

@@ -32,7 +32,7 @@
         recentTransactions = recentTransactions.subList(0, 10);
     }
     
-    List<Transaction> pendingTransactions = new ArrayList<>();
+    List<Transaction> pendingTransactions = new ArrayList<Transaction>();
     for (Transaction t : recentTransactions) {
         if (t.isPending()) {
             pendingTransactions.add(t);
