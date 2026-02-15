@@ -139,12 +139,20 @@
                                 </span>
                             </td>
                             <td style="padding: 1rem; text-align: center;">
-                                <button class="btn btn-secondary" style="padding: 0.5rem 1rem; margin-right: 0.5rem;">
+                                <button class="btn btn-secondary" style="padding: 0.5rem 1rem; margin-right: 0.5rem;" 
+                                        onclick="showEditModal(<%= account.getAccountId() %>, '<%= account.getAccountName() %>', 
+                                                '<%= account.getAccountType() %>', '<%= account.getStatus() %>')">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger" style="padding: 0.5rem 1rem;">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <form action="<%= request.getContextPath() %>/account" method="post" style="display: inline;" 
+                                      onsubmit="return confirm('Are you sure you want to delete this account?');">
+                                    <input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="accountId" value="<%= account.getAccountId() %>">
+                                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <% } %>
@@ -203,6 +211,58 @@
         </div>
     </div>
 
+    <!-- Edit Account Modal -->
+    <div id="editModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+         background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 2rem; border-radius: 12px; width: 90%; max-width: 500px;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--navy-blue);">
+                <i class="fas fa-edit"></i> Edit Account
+            </h2>
+            
+            <form action="<%= request.getContextPath() %>/account" method="post">
+                <input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" id="editAccountId" name="accountId">
+                
+                <div class="form-group">
+                    <label for="editAccountName">Account Name *</label>
+                    <input type="text" id="editAccountName" name="accountName" class="form-control" 
+                           placeholder="e.g., My Bank Account" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editAccountType">Account Type *</label>
+                    <select id="editAccountType" name="accountType" class="form-control" required>
+                        <option value="">Select Type</option>
+                        <option value="Bank">Bank Account</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Mobile Money">Mobile Money</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editStatus">Status *</label>
+                    <select id="editStatus" name="status" class="form-control" required>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-save"></i> Update Account
+                    </button>
+                    <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="hideEditModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         function showAddModal() {
             document.getElementById('addModal').style.display = 'flex';
@@ -210,6 +270,18 @@
         
         function hideAddModal() {
             document.getElementById('addModal').style.display = 'none';
+        }
+        
+        function showEditModal(accountId, accountName, accountType, status) {
+            document.getElementById('editAccountId').value = accountId;
+            document.getElementById('editAccountName').value = accountName;
+            document.getElementById('editAccountType').value = accountType;
+            document.getElementById('editStatus').value = status;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        
+        function hideEditModal() {
+            document.getElementById('editModal').style.display = 'none';
         }
     </script>
 </body>

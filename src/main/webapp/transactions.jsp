@@ -188,6 +188,7 @@
                 <span class="close" onclick="closeAddModal()">&times;</span>
             </div>
             <form action="<%= request.getContextPath() %>/transaction" method="POST">
+                <input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}">
                 <input type="hidden" name="action" value="create">
                 
                 <div class="form-group">

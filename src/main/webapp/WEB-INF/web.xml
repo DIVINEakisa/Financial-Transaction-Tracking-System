@@ -57,6 +57,8 @@
         <url-pattern>/transactions.jsp</url-pattern>
         <url-pattern>/accounts.jsp</url-pattern>
         <url-pattern>/profile.jsp</url-pattern>
+        <url-pattern>/transaction</url-pattern>
+        <url-pattern>/account</url-pattern>
         <url-pattern>/manager/*</url-pattern>
     </filter-mapping>
 
