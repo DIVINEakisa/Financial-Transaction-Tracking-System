@@ -2,7 +2,7 @@
 
 ## ✅ JSP Files Status
 
-### All Three JSP Files Are CORRECT ✓
+### All Three JSP Files Are CORRECT
 
 The "errors" shown by IntelliJ are **false positives** and can be safely ignored.
 
