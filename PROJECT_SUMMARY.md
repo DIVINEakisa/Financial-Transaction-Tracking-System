@@ -335,19 +335,19 @@ Manager views pending transactions
 
 ---
 
-## 📈 ADVANCED FEATURES
+## ADVANCED FEATURES
 
-### ✅ Implemented:
+### Implemented:
 
-1. ✅ Multi-account support
-2. ✅ Category-based tracking
-3. ✅ Transaction history
-4. ✅ Real-time balance updates
-5. ✅ Approval workflow
-6. ✅ Suspicious activity detection
-7. ✅ Audit logging
-8. ✅ Role-based access
-9. ✅ Password strength validation
+1.  Multi-account support
+2.  Category-based tracking
+3.  Transaction history
+4.  Real-time balance updates
+5.  Approval workflow
+6.  ✅ Suspicious activity detection
+7.  ✅ Audit logging
+8.  ✅ Role-based access
+9.  ✅ Password strength validation
 10. ✅ CSRF protection
 11. ✅ XSS prevention
 12. ✅ SQL injection prevention
