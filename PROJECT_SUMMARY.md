@@ -217,9 +217,9 @@
 
 ---
 
-## 💼 BUSINESS LOGIC IMPLEMENTATION
+## BUSINESS LOGIC IMPLEMENTATION
 
-### ✅ Transaction Workflow:
+### Transaction Workflow:
 
 ```
 User adds transaction
@@ -245,7 +245,7 @@ Log action in audit_log
 Success message
 ```
 
-### ✅ Approval Workflow:
+### Approval Workflow:
 
 ```
 Manager views pending transactions
@@ -261,7 +261,7 @@ Manager views pending transactions
                  Notify user
 ```
 
-### ✅ Balance Rules:
+### Balance Rules:
 
 - Expenses cannot exceed account balance
 - Negative balance prevented (CHECK constraint)
@@ -270,7 +270,7 @@ Manager views pending transactions
 
 ---
 
-## 🎨 UI/UX DESIGN
+## UI/UX DESIGN
 
 ### ✅ Design Features:
 
