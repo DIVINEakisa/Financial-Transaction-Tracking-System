@@ -53,6 +53,9 @@
             <a href="profile.jsp" class="nav-item active">
                 <i class="fas fa-user"></i> Profile
             </a>
+            <a href="settings.jsp" class="nav-item">
+                <i class="fas fa-cog"></i> Settings
+            </a>
         </nav>
         <div class="sidebar-footer">
             <a href="<%= request.getContextPath() %>/logout" class="nav-item">
@@ -64,7 +67,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="topbar">
-            <h1>My Profile</h1>
+            <h1><i class="fas fa-user-circle"></i> My Profile</h1>
         </div>
 
         <!-- Alert Messages -->
@@ -82,97 +85,64 @@
             </div>
         <% } %>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <!-- Profile Information Card -->
-            <div class="card">
-                <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                    <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; margin-right: 20px;">
-                        <%= user.getFullName().substring(0, 1).toUpperCase() %>
-                    </div>
-                    <div>
-                        <h2 style="margin: 0 0 5px 0;"><%= user.getFullName() %></h2>
-                        <p style="margin: 0; color: var(--text-secondary);">
-                            <i class="fas fa-envelope"></i> <%= user.getEmail() %>
-                        </p>
-                    </div>
+        <!-- Profile Card -->
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="width: 120px; height: 120px; border-radius: 50%; background: var(--gradient-primary); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 48px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(11, 61, 145, 0.3);">
+                    <%= user.getFullName().substring(0, 1).toUpperCase() %>
                 </div>
-
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">Role</span>
-                        <span class="info-value">
-                            <span class="badge <%= user.getRole().toLowerCase() %>">
-                                <%= user.getRole() %>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Status</span>
-                        <span class="info-value">
-                            <span class="status-badge status-<%= user.getStatus().toLowerCase() %>">
-                                <%= user.getStatus() %>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Phone</span>
-                        <span class="info-value"><%= user.getPhone() != null ? user.getPhone() : "Not set" %></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Last Login</span>
-                        <span class="info-value">
-                            <%= user.getLastLogin() != null ? dateFormat.format(user.getLastLogin()) : "Never" %>
-                        </span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Member Since</span>
-                        <span class="info-value"><%= dateFormat.format(user.getCreatedAt()) %></span>
-                    </div>
+                <h2 style="margin: 0 0 5px 0; font-size: 28px;"><%= user.getFullName() %></h2>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 16px;">
+                    <i class="fas fa-envelope"></i> <%= user.getEmail() %>
+                </p>
+                <div style="margin-top: 15px;">
+                    <span class="badge <%= user.getRole().toLowerCase() %>" style="font-size: 14px; padding: 6px 15px;">
+                        <i class="fas fa-user-tag"></i> <%= user.getRole() %>
+                    </span>
+                    <span class="status-badge status-<%= user.getStatus().toLowerCase() %>" style="font-size: 14px; padding: 6px 15px; margin-left: 10px;">
+                        <%= user.getStatus() %>
+                    </span>
                 </div>
-
-                <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="showEditModal()">
-                    <i class="fas fa-edit"></i> Edit Profile
-                </button>
             </div>
 
-            <!-- Security Card -->
-            <div class="card">
-                <h3 style="margin-top: 0;">Security Settings</h3>
-                
-                <div style="padding: 15px; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <i class="fas fa-shield-alt" style="font-size: 20px; color: var(--primary-color); margin-right: 10px;"></i>
-                        <strong>Password</strong>
-                    </div>
-                    <p style="margin: 0 0 10px 0; color: var(--text-secondary); font-size: 14px;">
-                        Secure your account with a strong password
-                    </p>
-                    <button class="btn btn-secondary" onclick="showPasswordModal()">
-                        <i class="fas fa-key"></i> Change Password
-                    </button>
-                </div>
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
-                <div style="padding: 15px; background: var(--bg-secondary); border-radius: 8px;">
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <i class="fas fa-history" style="font-size: 20px; color: var(--primary-color); margin-right: 10px;"></i>
-                        <strong>Activity Log</strong>
-                    </div>
-                    <p style="margin: 0 0 10px 0; color: var(--text-secondary); font-size: 14px;">
-                        Failed login attempts: <strong><%= user.getFailedLoginAttempts() %></strong>
-                    </p>
-                    <% if (user.getFailedLoginAttempts() > 0) { %>
-                    <small style="color: var(--warning-color);">
-                        <i class="fas fa-exclamation-triangle"></i> 
-                        Account will be locked after 5 failed attempts
-                    </small>
-                    <% } %>
+            <h3 style="margin: 0 0 20px 0;"><i class="fas fa-info-circle"></i> Personal Information</h3>
+            
+            <div class="info-grid" style="margin-bottom: 30px;">
+                <div class="info-item">
+                    <span class="info-label"><i class="fas fa-phone"></i> Phone</span>
+                    <span class="info-value"><%= user.getPhone() != null ? user.getPhone() : "Not set" %></span>
                 </div>
+                <div class="info-item">
+                    <span class="info-label"><i class="fas fa-calendar-alt"></i> Member Since</span>
+                    <span class="info-value"><%= dateFormat.format(user.getCreatedAt()) %></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label"><i class="fas fa-clock"></i> Last Login</span>
+                    <span class="info-value">
+                        <%= user.getLastLogin() != null ? dateFormat.format(user.getLastLogin()) : "Never" %>
+                    </span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label"><i class="fas fa-id-badge"></i> User ID</span>
+                    <span class="info-value">#<%= user.getUserId() %></span>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button class="btn btn-primary" onclick="showEditModal()">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+                <a href="settings.jsp" class="btn btn-secondary">
+                    <i class="fas fa-cog"></i> Go to Settings
+                </a>
             </div>
         </div>
 
         <!-- Account Statistics -->
-        <div class="card" style="margin-top: 20px;">
-            <h3 style="margin-top: 0;">Account Statistics</h3>
+        <div class="card" style="margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h3 style="margin-top: 0;"><i class="fas fa-chart-pie"></i> Account Statistics</h3>
             <% 
             AccountDAO accountDAO = new AccountDAO();
             TransactionDAO transactionDAO = new TransactionDAO();
@@ -180,23 +150,15 @@
             int totalTransactions = transactionDAO.getTransactionsByUserId(user.getUserId()).size();
             %>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: var(--gradient-primary);">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="stat-details">
-                        <div class="stat-value"><%= totalAccounts %></div>
-                        <div class="stat-label">Total Accounts</div>
-                    </div>
+                <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white;">
+                    <i class="fas fa-wallet" style="font-size: 32px; margin-bottom: 10px; opacity: 0.9;"></i>
+                    <div style="font-size: 32px; font-weight: bold; margin-bottom: 5px;"><%= totalAccounts %></div>
+                    <div style="font-size: 14px; opacity: 0.9;">Total Accounts</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: var(--gradient-success);">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <div class="stat-details">
-                        <div class="stat-value"><%= totalTransactions %></div>
-                        <div class="stat-label">Total Transactions</div>
-                    </div>
+                <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); border-radius: 10px; color: white;">
+                    <i class="fas fa-exchange-alt" style="font-size: 32px; margin-bottom: 10px; opacity: 0.9;"></i>
+                    <div style="font-size: 32px; font-weight: bold; margin-bottom: 5px;"><%= totalTransactions %></div>
+                    <div style="font-size: 14px; opacity: 0.9;">Total Transactions</div>
                 </div>
             </div>
         </div>
@@ -206,66 +168,34 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Edit Profile</h2>
+                <h2><i class="fas fa-user-edit"></i> Edit Profile</h2>
                 <span class="close" onclick="closeEditModal()">&times;</span>
             </div>
             <form action="<%= request.getContextPath() %>/profile" method="POST">
                 <input type="hidden" name="action" value="update">
                 
                 <div class="form-group">
-                    <label>Full Name <span style="color: red;">*</span></label>
+                    <label><i class="fas fa-user"></i> Full Name <span style="color: red;">*</span></label>
                     <input type="text" name="fullName" class="form-input" value="<%= user.getFullName() %>" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Email <span style="color: red;">*</span></label>
+                    <label><i class="fas fa-envelope"></i> Email <span style="color: red;">*</span></label>
                     <input type="email" name="email" class="form-input" value="<%= user.getEmail() %>" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Phone</label>
-                    <input type="tel" name="phone" class="form-input" value="<%= user.getPhone() != null ? user.getPhone() : "" %>">
+                    <label><i class="fas fa-phone"></i> Phone</label>
+                    <input type="tel" name="phone" class="form-input" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" placeholder="e.g., 0792502568">
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Change Password Modal -->
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Change Password</h2>
-                <span class="close" onclick="closePasswordModal()">&times;</span>
-            </div>
-            <form action="<%= request.getContextPath() %>/profile" method="POST">
-                <input type="hidden" name="action" value="changePassword">
-                
-                <div class="form-group">
-                    <label>Current Password <span style="color: red;">*</span></label>
-                    <input type="password" name="currentPassword" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                    <label>New Password <span style="color: red;">*</span></label>
-                    <input type="password" name="newPassword" class="form-input" required minlength="8">
-                    <small style="color: var(--text-secondary);">
-                        Must be at least 8 characters with uppercase, lowercase, number, and special character
-                    </small>
-                </div>
-
-                <div class="form-group">
-                    <label>Confirm New Password <span style="color: red;">*</span></label>
-                    <input type="password" name="confirmPassword" class="form-input" required>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closePasswordModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Change Password</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
                 </div>
             </form>
         </div>
@@ -280,22 +210,11 @@
             document.getElementById('editModal').style.display = 'none';
         }
 
-        function showPasswordModal() {
-            document.getElementById('passwordModal').style.display = 'block';
-        }
-
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-        }
-
         // Close modal when clicking outside
         window.onclick = function(event) {
             const editModal = document.getElementById('editModal');
-            const passwordModal = document.getElementById('passwordModal');
             if (event.target == editModal) {
                 closeEditModal();
-            } else if (event.target == passwordModal) {
-                closePasswordModal();
             }
         }
     </script>

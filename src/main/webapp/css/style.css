@@ -12,20 +12,31 @@
     --light-gray: #F4F6F9;
     --danger-red: #E74C3C;
     
+    /* Semantic Colors */
+    --primary-color: #0B3D91;
+    --secondary-color: #2ECC71;
+    --success-color: #2ECC71;
+    --danger-color: #E74C3C;
+    --warning-color: #F1C40F;
+    --info-color: #3498db;
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, #0B3D91 0%, #2ECC71 100%);
     --gradient-success: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
     --gradient-danger: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+    --gradient-warning: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
     
     /* Text Colors */
     --text-dark: #2C3E50;
     --text-light: #7F8C8D;
     --text-white: #FFFFFF;
+    --text-secondary: #7F8C8D;
     
     /* Backgrounds */
     --bg-white: #FFFFFF;
     --bg-light: #F4F6F9;
     --bg-dark: #0B3D91;
+    --bg-secondary: #F4F6F9;
     
     /* Borders */
     --border-color: #E1E8ED;
@@ -990,4 +1001,113 @@ img {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #27AE60;
+}
+
+/* ========== TOGGLE SWITCH ========== */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--emerald-green);
+}
+
+input:disabled + .slider {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* ========== INFO GRID (Profile & Settings) ========== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+
+.info-label {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 15px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* ========== DANGER ZONE STYLING ========== */
+.btn-danger {
+    background: var(--gradient-danger);
+    color: white;
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* ========== GRADIENT BACKGROUNDS ========== */
+.gradient-primary {
+    background: var(--gradient-primary);
+}
+
+.gradient-success {
+    background: var(--gradient-success);
+}
+
+.gradient-warning {
+    background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+}
+
+.gradient-danger {
+    background: var(--gradient-danger);
 }

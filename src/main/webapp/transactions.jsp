@@ -57,6 +57,9 @@
             <a href="profile.jsp" class="nav-item">
                 <i class="fas fa-user"></i> Profile
             </a>
+            <a href="settings.jsp" class="nav-item">
+                <i class="fas fa-cog"></i> Settings
+            </a>
         </nav>
         <div class="sidebar-footer">
             <a href="<%= request.getContextPath() %>/logout" class="nav-item">

@@ -57,6 +57,7 @@
                 <li><a href="<%= request.getContextPath() %>/accounts.jsp"><i class="fas fa-wallet"></i> Accounts</a></li>
                 <li><a href="<%= request.getContextPath() %>/reports.jsp" class="active"><i class="fas fa-chart-bar"></i> Reports</a></li>
                 <li><a href="<%= request.getContextPath() %>/profile.jsp"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="<%= request.getContextPath() %>/settings.jsp"><i class="fas fa-cog"></i> Settings</a></li>
                 <li><a href="<%= request.getContextPath() %>/logout" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
