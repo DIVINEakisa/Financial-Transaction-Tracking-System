@@ -24,6 +24,26 @@ public class TransactionServlet extends HttpServlet {
     private AuditLogDAO auditLogDAO = new AuditLogDAO();
     
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+        
+        // Check for success parameter
+        String success = request.getParameter("success");
+        if ("true".equals(success)) {
+            request.setAttribute("success", "Transaction added successfully");
+        }
+        
+        // Forward to transactions page
+        request.getRequestDispatcher("/transactions.jsp").forward(request, response);
+    }
+    
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -121,6 +141,10 @@ public class TransactionServlet extends HttpServlet {
                 } else {
                     request.setAttribute("success", "Transaction added successfully");
                 }
+                
+                // Use redirect to prevent form resubmission
+                response.sendRedirect(request.getContextPath() + "/transaction?success=true");
+                return;
             } else {
                 request.setAttribute("error", "Failed to add transaction");
             }
