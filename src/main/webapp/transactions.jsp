@@ -192,7 +192,7 @@
             </div>
             <form action="<%= request.getContextPath() %>/transaction" method="POST">
                 <input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}">
-                <input type="hidden" name="action" value="create">
+                <input type="hidden" name="action" value="add">
                 
                 <div class="form-group">
                     <label>Transaction Type <span style="color: red;">*</span></label>
